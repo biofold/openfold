@@ -34,7 +34,7 @@ standard_aa_indices = [alphabet.tok_to_idx[aa] for aa in standard_aa_tokens]
 standard_aa_probs = probabilities[:, standard_aa_indices]
 
 # 6. Verify that probabilities sum to 1 (or very close due to floating point precision)
-print(f"Probability sums per position: {standard_aa_probs.sum(dim=1).numpy()}")
+#print(f"Probability sums per position: {standard_aa_probs.sum(dim=1).numpy()}")
 
 # 7. Create DataFrame with only standard amino acids
 profile_df = pd.DataFrame(standard_aa_probs.numpy(), columns=standard_aa_tokens)
@@ -46,16 +46,17 @@ print(profile_df.head())
 
 # 8. SAVE THE PROFILE TO FILES
 # Save as CSV file
-csv_filename = "esm_sequence_profile_corrected.csv"
-profile_df.to_csv(csv_filename, index=False, float_format='%.6f')
-print(f"\nProfile saved to {csv_filename}")
+#csv_filename = "esm_sequence_profile_corrected.csv"
+#profile_df.to_csv(csv_filename, index=False, float_format='%.6f')
+#print(f"\nProfile saved to {csv_filename}")
 
 # Save a version with probabilities normalized to exactly 1 (optional)
 profile_df_normalized = profile_df.copy()
 for aa in standard_aa_tokens:
     profile_df_normalized[aa] = profile_df_normalized[aa] / profile_df_normalized[standard_aa_tokens].sum(axis=1)
 
-normalized_csv = sys.argv[1]
+#normalized_csv = sys.argv[1]
+normalized_csv = 'esm_sequence_profile.tsv'
 profile_df_normalized.to_csv(normalized_csv, sep='\t', index=False, float_format='%.6f')
 print(f"Normalized profile saved to {normalized_csv}")
 
