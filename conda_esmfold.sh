@@ -28,7 +28,8 @@ pip install modelcif biopython "numpy<=1.23.5"
 
 # ---- 7. Install PyTorch Geometric ecosystem ----
 # Ensure versions compatible with PyTorch 2.x + CUDA 12.x
-pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+#pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric
+pip install torch-geometric torch-scatter
 
 # ---- 8. Optional: remove DeepSpeed (not needed for inference) ----
 pip uninstall -y deepspeed || true
